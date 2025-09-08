@@ -29,18 +29,16 @@ def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):
         )
 
     data = response.json().get("person")
+    if not data or not isinstance(data, dict):
+        # Handle missing or invalid data gracefully
+        return {}
+
     data = {
         k: v
         for k, v in data.items()
-        if v not in ([], "", "", None) and k not in ["certifications"]
+        if v not in ([], "", None) and k not in ["certifications"]
     }
 
     return data
 
 
-if __name__ == "__main__":
-    print(
-        scrape_linkedin_profile(
-            linkedin_profile_url="https://www.linkedin.com/in/eden-marco/"
-        ),
-    )

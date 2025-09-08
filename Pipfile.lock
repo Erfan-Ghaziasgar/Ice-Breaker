@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "31854f9de067b66607fb3c681f36666c34b8e8b40cad6f7bc66eea194482e884"
+            "sha256": "38f83992dc18b0933278bde5a6d470847a31fc4f9f8a3d8be4208652c726d47e"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -884,6 +884,14 @@
             "markers": "python_version >= '3.11'",
             "version": "==2.3.2"
         },
+        "oauthlib": {
+            "hashes": [
+                "sha256:0f0f8aa759826a193cf66c12ea1af1637f87b9b4622d46e866952bb022e538c9",
+                "sha256:88119c938d2b8fb88561af5f6ee0eec8cc8d552b7bb1f712743136eb7523b7a1"
+            ],
+            "markers": "python_version >= '3.8'",
+            "version": "==3.3.1"
+        },
         "openai": {
             "hashes": [
                 "sha256:662bf47d48e35311d2de46ad2ef6745419441f1aa14b56eeae47b4867ef9de30",
@@ -1399,6 +1407,14 @@
             "markers": "python_version >= '3.9'",
             "version": "==2.32.5"
         },
+        "requests-oauthlib": {
+            "hashes": [
+                "sha256:7dd8a5c40426b779b0868c404bdef9768deccf22749cde15852df527e6269b36",
+                "sha256:b3dffaebd884d8cd778494369603a9e7b58d29111bf6b41bdc2dcd87203af4e9"
+            ],
+            "markers": "python_version >= '3.4'",
+            "version": "==2.0.0"
+        },
         "requests-toolbelt": {
             "hashes": [
                 "sha256:7681a0a3d047012b5bdc0ee37d7f8f07ebe76ab08caeccfc3921ce23c88d5bc6",
@@ -1530,6 +1546,15 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==4.67.1"
+        },
+        "tweepy": {
+            "hashes": [
+                "sha256:1d95cbdc50bf6353a387f881f2584eaf60d14e00dbbdd8872a73de79c66878e3",
+                "sha256:48d1a1eb311d2c4b8990abcfa6f9fa2b2ad61be05c723b1a9b4f242656badae2"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.9'",
+            "version": "==4.16.0"
         },
         "types-requests": {
             "hashes": [

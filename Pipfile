@@ -11,6 +11,7 @@ langchain-community = "*"
 black = "*"
 langchain-openai = "*"
 langchain-tavily = "*"
+tweepy = "*"
 
 [dev-packages]
 
