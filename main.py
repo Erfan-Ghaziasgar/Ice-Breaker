@@ -4,13 +4,14 @@ from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 
 from ice_breaker.agents.linkedin_lookup_agent import lookup as linkedin_lookup
-from ice_breaker.third_parties.linkedin import scrape_linkedin_profile
-
 from ice_breaker.agents.twitter_lookup_agent import lookup as twitter_lookup
+from ice_breaker.third_parties.linkedin import scrape_linkedin_profile
 from ice_breaker.third_parties.twitter import scrape_user_tweets
+from output_parsers import summary_parser, Summary
+from typing import Tuple
 
 
-def ice_breaker_with(name: str) -> str:
+def ice_breaker_with(name: str) -> Tuple[Summary, str]:
     linkedin_profile_url = linkedin_lookup(name=name)
     print(f"Linkedin Profile URL: {linkedin_profile_url}")
 
@@ -31,27 +32,33 @@ def ice_breaker_with(name: str) -> str:
     2. two interesting facts about them
 
     Use both information from twitter and Linkedin
+    \n{format_instructions}
     """
 
     summary_prompt_template = PromptTemplate(
         input_variables=["linkedin_data", "tweets"],
         template=summary_template,
+        partial_variables={
+            "format_instructions": summary_parser.get_format_instructions()},
     )
 
     # Do NOT set temperature
     llm = ChatOpenAI(model="gpt-5-nano", max_retries=3)
-    chain = summary_prompt_template | llm
-    result = chain.invoke(input={
+    chain = summary_prompt_template | llm | summary_parser
+    result: Summary = chain.invoke(input={
         "linkedin_data": linkedin_data,
         "tweets": tweets,
     })
-    return result.content
 
+    print("Result:", result)
+    print("*" * 20)
+    print("Summary:", result.summary)
+    print("Facts:", result.facts)
+
+    return result, linkedin_data.get("photoUrl", "")
 
 if __name__ == "__main__":
     load_dotenv()
 
-    print("Enter the full name of the person you want to break the ice with:")
-    name = input().strip()
-    ice_breaker_message = ice_breaker_with(name)
-    print(f"Ice Breaker Message:\n{ice_breaker_message}")
+    print("Ice Breaker Enter")
+    ice_breaker_with(name="Harrison Chase")

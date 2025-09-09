@@ -12,6 +12,7 @@ black = "*"
 langchain-openai = "*"
 langchain-tavily = "*"
 tweepy = "*"
+flask = "*"
 
 [dev-packages]
 
